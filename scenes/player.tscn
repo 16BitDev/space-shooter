@@ -1,0 +1,27 @@
+[gd_scene load_steps=5 format=3 uid="uid://dgyc4cbl3lr3n"]
+
+[ext_resource type="Script" path="res://player.gd" id="1_a8v5m"]
+[ext_resource type="Texture2D" uid="uid://dylcyde2qaom0" path="res://assets/SpaceShooterAssets/SpaceShooterAssetPack_Ships.png" id="2_gdy5u"]
+[ext_resource type="PackedScene" uid="uid://bc7gr56jqpgqe" path="res://scenes/projectile.tscn" id="2_ogydi"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_f7hcv"]
+size = Vector2(16, 20)
+
+[node name="player" type="CharacterBody2D"]
+collision_mask = 4
+script = ExtResource("1_a8v5m")
+bullet_node = ExtResource("2_ogydi")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+scale = Vector2(2, 2)
+texture = ExtResource("2_gdy5u")
+region_enabled = true
+region_rect = Rect2(8, 8, 8, 8)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_f7hcv")
+
+[node name="Timer" type="Timer" parent="."]
+wait_time = 0.2
+
+[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]

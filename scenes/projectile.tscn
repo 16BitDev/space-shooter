@@ -1,0 +1,26 @@
+[gd_scene load_steps=4 format=3 uid="uid://bc7gr56jqpgqe"]
+
+[ext_resource type="Texture2D" uid="uid://cs4kvo5cf35pt" path="res://assets/SpaceShooterAssets/SpaceShooterAssetPack_Projectiles.png" id="1_0ll1c"]
+[ext_resource type="Script" path="res://scenes/projectile.gd" id="1_a0xuc"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_8bhkl"]
+size = Vector2(1, 3)
+
+[node name="projectile" type="Area2D"]
+collision_layer = 0
+collision_mask = 2
+script = ExtResource("1_a0xuc")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(-0.5, 0.5)
+shape = SubResource("RectangleShape2D_8bhkl")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("1_0ll1c")
+region_enabled = true
+region_rect = Rect2(16, 0, 8, 8)
+
+[node name="VisibleOnScreenNotifier2D" type="VisibleOnScreenNotifier2D" parent="."]
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]
+[connection signal="screen_exited" from="VisibleOnScreenNotifier2D" to="." method="_on_exited"]

@@ -1,0 +1,22 @@
+[gd_scene load_steps=3 format=3 uid="uid://ciyvtnf75axfq"]
+
+[ext_resource type="Script" path="res://scenes/enemy_spawner.gd" id="1_wxsvy"]
+[ext_resource type="PackedScene" uid="uid://b3o3rg1ho1chy" path="res://scenes/enemy.tscn" id="2_maxvd"]
+
+[node name="EnemySpawner" type="Node2D"]
+script = ExtResource("1_wxsvy")
+enemy_node = ExtResource("2_maxvd")
+
+[node name="WaveTimer" type="Timer" parent="."]
+wait_time = 5.0
+autostart = true
+
+[node name="WaveNumber" type="Label" parent="."]
+offset_left = 86.0
+offset_top = 238.0
+offset_right = 144.0
+offset_bottom = 264.0
+scale = Vector2(0.580547, 0.580547)
+text = "wave :1"
+
+[connection signal="timeout" from="WaveTimer" to="." method="_on_wave_timer_timeout"]
